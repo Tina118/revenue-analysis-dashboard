@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify'
+
+import { useRevenueAnalysisContext } from 'context'
 
 /**
  * Login
@@ -14,6 +16,9 @@ const Login = () => {
   // Define state variables for email and password
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
+  // Get the setUserName function from the context
+  const { setUserName } = useRevenueAnalysisContext()
 
   // Function to handle form submission
   const handleSubmit = async (e) => {
@@ -37,9 +42,10 @@ const Login = () => {
       // Check if the login was successful
       if (res.success) {
         // Display a success toast and reset the email and password fields
-        toast.success("Logged In Successfully")
+        toast.success('Logged In Successfully')
         setEmail('')
         setPassword('')
+        setUserName(res.userName)
         navigate('/dashboard') // Redirect to the dashboard page
         // Store the token in the local storage for authentication
         localStorage.setItem(

@@ -2,10 +2,11 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 
 import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.css'
 
 import './index.css'
 import App from 'container/App'
+import { RevenueAnalysisProvider } from 'context'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
@@ -21,6 +22,8 @@ root.render(
       draggable
       pauseOnHover
     />
-    <App />
+    <RevenueAnalysisProvider>
+      <App />
+    </RevenueAnalysisProvider>
   </React.StrictMode>,
 )
