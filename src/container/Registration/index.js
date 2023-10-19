@@ -1,6 +1,66 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+
+/**
+ * Registration
+ * Contains the registration form with required validations
+ */
 
 const Registration = () => {
+  // Get the navigation function from React Router
+  const navigate = useNavigate()
+
+  // Define state variables for username, email, password, and confirm password
+  const [userName, setUsername] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [cpassword, setCPassword] = useState('')
+
+  // Function to handle form submission
+  const handleSubmit = async (e) => {
+    // Create an object with the user's information
+    const formData = { userName, email, password }
+    e.preventDefault() // Prevent the default form submission behavior
+
+    // Check if the password and confirm password match or if both are empty
+    if (password !== cpassword || (password === '' && cpassword === '')) {
+      toast.error('Password did not match')
+      return
+    }
+
+    try {
+      // Send a POST request to the '/api/signup' endpoint with the form data
+      const response = await fetch('/api/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      // Parse the response JSON
+      const res = await response.json()
+
+      // Check if the registration was successful
+      if (res.success) {
+        // Display a success toast and reset the form fields
+        toast.success('User registered successfully')
+        setUsername('')
+        setEmail('')
+        setPassword('')
+        setCPassword('')
+        navigate('/') // Redirect to the login page
+      } else {
+        // Display an error toast if the registration was not successful
+        toast.error(res.error)
+      }
+    } catch (error) {
+      // Display an error toast for any exceptions
+      toast.error(error)
+    }
+  }
+
   return (
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -16,7 +76,7 @@ const Registration = () => {
           <p className="mt-2 text-center text-sm text-gray-600">
             Or{' '}
             <a
-              href="/login"
+              href="/"
               className="font-medium text-gray-600 hover:text-gray-500"
             >
               Login
@@ -28,19 +88,21 @@ const Registration = () => {
           <form className="space-y-6" method="POST">
             <div>
               <label
-                htmlFor="email"
+                htmlFor="name"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
                 Name
               </label>
               <div className="mt-2">
                 <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
+                  value={userName}
+                  onChange={(e) => setUsername(e.target.value)}
+                  id="name"
+                  name="name"
+                  type="text"
+                  autoComplete="name"
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -53,16 +115,17 @@ const Registration = () => {
               </label>
               <div className="mt-2">
                 <input
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   id="email"
                   name="email"
                   type="email"
                   autoComplete="email"
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
-
             <div>
               <div className="flex items-center justify-between">
                 <label
@@ -74,20 +137,21 @@ const Registration = () => {
               </div>
               <div className="mt-2">
                 <input
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   id="password"
                   name="password"
                   type="password"
                   autoComplete="current-password"
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
-
             <div>
               <div className="flex items-center justify-between">
                 <label
-                  htmlFor="password"
+                  htmlFor="cpassword"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
                   Confirm Password
@@ -95,19 +159,21 @@ const Registration = () => {
               </div>
               <div className="mt-2">
                 <input
-                  id="password"
-                  name="password"
+                  value={cpassword}
+                  onChange={(e) => setCPassword(e.target.value)}
+                  id="cpassword"
+                  name="cpassword"
                   type="password"
                   autoComplete="current-password"
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
-
             <div>
               <button
                 type="submit"
+                onClick={handleSubmit}
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Sign up
