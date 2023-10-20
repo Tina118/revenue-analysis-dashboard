@@ -52,19 +52,18 @@ const getUniqueRevenueTypes = (revenue) => {
 
 /**
  * Dashboard
- * Represents the dashboard page.
+ * Represents the Line chart and table for revenue analysis
  */
 
 const Dashboard = () => {
   // Get the navigation function from React Router
   const navigate = useNavigate()
 
-  // Get the userName function from the context
-  const { userName = '' } = useRevenueAnalysisContext()
+  // Get the userName,selectedOption from the context
+  const { userName = '', selectedOption = '' } = useRevenueAnalysisContext()
 
   // Define state variables
   const [revenue, setRevenue] = useState([])
-  const [selectedOption, setSelectedOption] = useState('All Revenue Type')
   const [revenueType, setRevenueType] = useState([])
   const [filteredRevenue, setFilteredRevenue] = useState(revenue)
   const [isLoading, setIsLoading] = useState(true)
@@ -140,8 +139,6 @@ const Dashboard = () => {
             {/* Dropdown Component */}
             <Dropdown
               revenueType={revenueType}
-              selectedOption={selectedOption}
-              setSelectedOption={setSelectedOption}
             />
 
             {/* Chart Component */}

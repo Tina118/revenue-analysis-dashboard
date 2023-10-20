@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { array } from 'prop-types'
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
@@ -76,7 +76,7 @@ const Chart = ({ revenue }) => {
 
 // PropTypes for the Chart component
 Chart.propTypes = {
-  revenue: array
-};
+  revenue: array,
+}
 
-export default Chart
+export default memo(Chart)

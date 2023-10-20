@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
 import { func, string } from 'prop-types'
 
+/**
+ * Navbar
+ * Display logo, signout button and welcome message
+ */
 const Navbar = ({ onClick, userName }) => {
   const [toggleNav, setToggleNav] = useState(false);
 

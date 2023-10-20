@@ -1,17 +1,21 @@
-import React, { useState } from 'react';
-import {arrayOf,string,func} from 'prop-types';
+import React, { useState,memo } from 'react'
+import { arrayOf, string } from 'prop-types'
+
+import { useRevenueAnalysisContext } from 'context'
 
 /**
  * Dropdown
  * A component for rendering a dropdown menu.
  */
-const Dropdown = ({ revenueType, selectedOption, setSelectedOption }) => {
-  const [dropdownOpen, setDropdownOpen] = useState(false); // State for dropdown
+const Dropdown = ({ revenueType }) => {
+  const { selectedOption, setSelectedOption } = useRevenueAnalysisContext()
+
+  const [dropdownOpen, setDropdownOpen] = useState(false) // State for dropdown
 
   const toggleDropdown = () => {
     // Toggle the dropdownOpen state to open or close the dropdown
-    setDropdownOpen(!dropdownOpen);
-  };
+    setDropdownOpen(!dropdownOpen)
+  }
 
   return (
     <div className="flex items-center justify-between pb-4">
@@ -64,8 +68,8 @@ const Dropdown = ({ revenueType, selectedOption, setSelectedOption }) => {
                     type="radio"
                     name="filter-radio"
                     onChange={() => {
-                      setSelectedOption(type);
-                      setDropdownOpen(false); // Close the dropdown on option selection
+                      setSelectedOption(type)
+                      setDropdownOpen(false) // Close the dropdown on option selection
                     }}
                   />
                   <label
@@ -81,14 +85,12 @@ const Dropdown = ({ revenueType, selectedOption, setSelectedOption }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 // PropTypes for the Dropdown component
 Dropdown.propTypes = {
   revenueType: arrayOf(string),
-  selectedOption: string,
-  setSelectedOption: func,
-};
+}
 
-export default Dropdown;
+export default memo(Dropdown)
