@@ -67,7 +67,7 @@ const RevenueTable = ({ columns, data }) => {
 
   // Render the UI for your table
   return (
-    <div className="relative overflow-x-auto sm:rounded-lg px-20 py-10">
+    <div className="relative overflow-x-auto sm:rounded-lg">
       <table
         {...getTableProps()}
         className="w-full text-sm text-left text-gray-500"
