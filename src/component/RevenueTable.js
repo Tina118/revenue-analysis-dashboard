@@ -1,5 +1,5 @@
-import React from 'react'
-import {array} from 'prop-types'
+import React, { useMemo } from 'react'
+import { array } from 'prop-types'
 import { useTable, usePagination } from 'react-table'
 
 /**
@@ -8,6 +8,7 @@ import { useTable, usePagination } from 'react-table'
  */
 const RevenueTable = ({ columns, data }) => {
   // Get table properties and data using react-table
+
   const {
     getTableProps,
     getTableBodyProps,
@@ -34,20 +35,20 @@ const RevenueTable = ({ columns, data }) => {
   )
 
   // Function to render page numbers dynamically
-  const renderPageNumbers = () => {
-    const pageNumbers = [];
-    const displayCount = 5; // The number of page numbers to display
+  const renderPageNumbers = useMemo(() => {
+    const pageNumbers = []
+    const displayCount = 5 // The number of page numbers to display
 
-    let startPage = Math.max(0, pageIndex - Math.floor(displayCount / 2));
-    let endPage = startPage + displayCount - 1;
+    let startPage = Math.max(0, pageIndex - Math.floor(displayCount / 2))
+    let endPage = startPage + displayCount - 1
 
     if (endPage >= pageCount) {
-      endPage = pageCount - 1;
-      startPage = Math.max(0, endPage - displayCount + 1);
+      endPage = pageCount - 1
+      startPage = Math.max(0, endPage - displayCount + 1)
     }
 
     for (let i = startPage; i <= endPage; i++) {
-      pageNumbers.push(i);
+      pageNumbers.push(i)
     }
 
     return pageNumbers.map((pageNo) => (
@@ -63,8 +64,8 @@ const RevenueTable = ({ columns, data }) => {
           {pageNo + 1}
         </span>
       </li>
-    ));
-  };
+    ))
+  }, [pageIndex, pageCount, gotoPage])
 
   // Render the UI for your table
   return (
@@ -110,7 +111,10 @@ const RevenueTable = ({ columns, data }) => {
           })}
         </tbody>
       </table>
-      <nav className="flex items-center justify-between pt-4" aria-label="Table navigation">
+      <nav
+        className="flex items-center justify-between pt-4"
+        aria-label="Table navigation"
+      >
         <span className="text-sm font-normal text-gray-500">
           Showing{' '}
           <span className="font-semibold text-gray-900">
@@ -131,7 +135,8 @@ const RevenueTable = ({ columns, data }) => {
           >
             Previous
           </li>
-          {renderPageNumbers()} {/* Call the function to render dynamic page numbers */}
+          {renderPageNumbers}{' '}
+          {/* Call the function to render dynamic page numbers */}
           <li
             onClick={() => nextPage()}
             disabled={!canNextPage}
@@ -153,6 +158,6 @@ const RevenueTable = ({ columns, data }) => {
 RevenueTable.propTypes = {
   columns: array,
   data: array,
-};
+}
 
 export default RevenueTable
