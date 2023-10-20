@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useMemo,memo } from 'react'
 import { array } from 'prop-types'
 import { useTable, usePagination } from 'react-table'
 
@@ -55,7 +55,7 @@ const RevenueTable = ({ columns, data }) => {
       <li key={pageNo}>
         <span
           onClick={() => gotoPage(pageNo)}
-          className={`flex items-center justify-center px-3 h-8 ${
+          className={`cursor-pointer flex items-center justify-center px-3 h-8 ${
             pageNo === pageIndex
               ? 'bg-blue-50 text-blue-600 border border-gray-300'
               : 'bg-white text-gray-500 border border-gray-300 hover:bg-gray-100 hover-text-gray-700'
@@ -127,7 +127,7 @@ const RevenueTable = ({ columns, data }) => {
           <li
             onClick={() => previousPage()}
             disabled={!canPreviousPage}
-            className={`flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg ${
+            className={`cursor-pointer flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg ${
               !canPreviousPage
                 ? 'disabled:bg-gray-100 disabled:text-gray-70'
                 : 'hover:bg-gray-100 hover:text-gray-70'
@@ -140,7 +140,7 @@ const RevenueTable = ({ columns, data }) => {
           <li
             onClick={() => nextPage()}
             disabled={!canNextPage}
-            className={`flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg ${
+            className={`cursor-pointer flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg ${
               !canNextPage
                 ? 'disabled:bg-gray-100 disabled:text-gray-70'
                 : 'hover:bg-gray-100 hover:text-gray-70'
@@ -160,4 +160,4 @@ RevenueTable.propTypes = {
   data: array,
 }
 
-export default RevenueTable
+export default memo(RevenueTable)
