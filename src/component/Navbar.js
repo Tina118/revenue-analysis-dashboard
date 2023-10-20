@@ -38,48 +38,6 @@ const Navbar = ({ onClick, userName }) => {
         <div className="hidden w-full md:block md:w-auto" id="navbar-dropdown">
           <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white ">
             <li>
-              <button
-                id="dropdownNavbarLink"
-                data-dropdown-toggle="dropdownNavbar"
-                className="flex items-center justify-between w-full py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto"
-              >
-                Dropdown{' '}
-                <svg
-                  className="w-2.5 h-2.5 ml-2.5"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 10 6"
-                >
-                  <path
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="m1 1 4 4 4-4"
-                  />
-                </svg>
-              </button>
-
-              <div
-                id="dropdownNavbar"
-                className="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 "
-              >
-                <ul
-                  className="py-2 text-sm text-gray-700 "
-                  aria-labelledby="dropdownLargeButton"
-                ></ul>
-                <div className="py-1">
-                  <a
-                    href="/"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 "
-                  >
-                    Sign out
-                  </a>
-                </div>
-              </div>
-            </li>
-            <li>
               <a
                 href="/"
                 onClick={onClick}
@@ -100,6 +58,7 @@ const Navbar = ({ onClick, userName }) => {
   )
 }
 
+// PropTypes for the Navbar component
 Navbar.propTypes = {
   onClick: func,
   userName: string,

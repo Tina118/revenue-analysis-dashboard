@@ -1,4 +1,5 @@
 import React from 'react'
+import {array} from 'prop-types'
 import { useTable, usePagination } from 'react-table'
 
 /**
@@ -67,7 +68,7 @@ const RevenueTable = ({ columns, data }) => {
 
   // Render the UI for your table
   return (
-    <div className="relative overflow-x-auto sm:rounded-lg">
+    <div className="relative overflow-x-auto sm:rounded-lg mt-10">
       <table
         {...getTableProps()}
         className="w-full text-sm text-left text-gray-500"
@@ -147,5 +148,11 @@ const RevenueTable = ({ columns, data }) => {
     </div>
   )
 }
+
+// PropTypes for the RevenueTable component
+RevenueTable.propTypes = {
+  columns: array,
+  data: array,
+};
 
 export default RevenueTable
