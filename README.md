@@ -10,7 +10,7 @@ Functionalities:
 
 <img width="940" alt="image" src="https://github.com/Tina118/revenue-analysis-dashboard/assets/47208932/7c1b38d6-2f74-428b-b752-50c7c12e151e">
 
-**2]Validations in Login Page**
+**2]Validations for Login Page**
 
 <img width="940" alt="image" src="https://github.com/Tina118/revenue-analysis-dashboard/assets/47208932/512b0bb0-06e5-4ff3-abd2-fd57e44cc050">
 <img width="940" alt="image" src="https://github.com/Tina118/revenue-analysis-dashboard/assets/47208932/0a6dc7d7-1635-4f37-95ce-4c7c0084b6f3">
@@ -24,7 +24,7 @@ Functionalities:
 
 <img width="940" alt="image" src="https://github.com/Tina118/revenue-analysis-dashboard/assets/47208932/6e9fae79-5961-47c9-aa45-bf810e5a44c9">
 
-**5]Validations in Registration Page**
+**5]Validations for Registration Page**
 
 <img width="940" alt="image" src="https://github.com/Tina118/revenue-analysis-dashboard/assets/47208932/9c4cd968-93e3-4ceb-b31a-13d6464217b7">
 <img width="940" alt="image" src="https://github.com/Tina118/revenue-analysis-dashboard/assets/47208932/a9247dbc-9019-431a-947e-e44744362a71">
