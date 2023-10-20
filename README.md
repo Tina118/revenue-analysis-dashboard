@@ -1,70 +1,66 @@
-# Getting Started with Create React App
+# **Revenue Analysis Dashboard**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A simple dashboard of revenue analysis
 
-## Available Scripts
+**Technology used** : HTML, CSS , Javascript, Tailwindcss, React, useTable, usePagination
 
-In the project directory, you can run:
+Functionalities:
 
-### `npm start`
+**1]Login Page Ui:**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<img width="940" alt="image" src="https://github.com/Tina118/revenue-analysis-dashboard/assets/47208932/7c1b38d6-2f74-428b-b752-50c7c12e151e">
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+**2]Validations in Login Page**
 
-### `npm test`
+<img width="940" alt="image" src="https://github.com/Tina118/revenue-analysis-dashboard/assets/47208932/512b0bb0-06e5-4ff3-abd2-fd57e44cc050">
+<img width="940" alt="image" src="https://github.com/Tina118/revenue-analysis-dashboard/assets/47208932/0a6dc7d7-1635-4f37-95ce-4c7c0084b6f3">
+<img width="940" alt="image" src="https://github.com/Tina118/revenue-analysis-dashboard/assets/47208932/c8d79736-41e1-43ba-93a1-c1e6a1178002">
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**3]If user is not logged in and try to change routes, it will be redirected back to login page**
 
-### `npm run build`
+<img width="940" alt="image" src="https://github.com/Tina118/revenue-analysis-dashboard/assets/47208932/7c1b38d6-2f74-428b-b752-50c7c12e151e">
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**4]Register Page Ui:**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<img width="940" alt="image" src="https://github.com/Tina118/revenue-analysis-dashboard/assets/47208932/6e9fae79-5961-47c9-aa45-bf810e5a44c9">
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**5]Validations in Registration Page**
 
-### `npm run eject`
+<img width="940" alt="image" src="https://github.com/Tina118/revenue-analysis-dashboard/assets/47208932/9c4cd968-93e3-4ceb-b31a-13d6464217b7">
+<img width="940" alt="image" src="https://github.com/Tina118/revenue-analysis-dashboard/assets/47208932/a9247dbc-9019-431a-947e-e44744362a71">
+<img width="940" alt="image" src="https://github.com/Tina118/revenue-analysis-dashboard/assets/47208932/136a9ed2-66ec-4ce4-b24d-07dc8ba2eafa">
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**6]Dashboard page Ui**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<img width="940" alt="image" src="https://github.com/Tina118/revenue-analysis-dashboard/assets/47208932/423a4e37-2382-4ad6-93ff-25533bcccf5c">
+<img width="940" alt="image" src="https://github.com/Tina118/revenue-analysis-dashboard/assets/47208932/44c1c3e2-75e2-4e70-afda-b2d51896ce9c">
+<img width="940" alt="image" src="https://github.com/Tina118/revenue-analysis-dashboard/assets/47208932/8754239e-95c4-47a1-97c3-5c4d74e7f840">
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+**7]Filter Dropdown is available for revenue type, which will update chart and table based on option selected**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<img width="940" alt="image" src="https://github.com/Tina118/revenue-analysis-dashboard/assets/47208932/e486f5dd-1bd4-4fe6-8ff8-7e29cd98e006">
+<img width="940" alt="image" src="https://github.com/Tina118/revenue-analysis-dashboard/assets/47208932/0560e402-0dbb-4fd8-b090-4009bb14092a">
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<img width="940" alt="image" src="https://github.com/Tina118/revenue-analysis-dashboard/assets/47208932/75c36db5-8c4a-4227-8ac4-d74adee43eba">
+<img width="940" alt="image" src="https://github.com/Tina118/revenue-analysis-dashboard/assets/47208932/f6ab1800-8f2c-4e9e-8ea3-0ed63a7988b9">
 
-### Code Splitting
+**8]Pagination is added to table, and only 10 rows will be displayed at a time**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+<img width="940" alt="image" src="https://github.com/Tina118/revenue-analysis-dashboard/assets/47208932/45d99172-ade8-423a-8033-287c78b3ec5b">
+<img width="940" alt="image" src="https://github.com/Tina118/revenue-analysis-dashboard/assets/47208932/472bd634-96c2-4746-b4d7-efb174b23a70">
 
-### Analyzing the Bundle Size
+**9]Loader will be displayed on dashboard page if it takes time to load data**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+<img width="940" alt="image" src="https://github.com/Tina118/revenue-analysis-dashboard/assets/47208932/fe6bfccc-ef5e-424f-9b6f-f2731e2b3e05">
 
-### Making a Progressive Web App
+**10]Message will be displayed is no data is received from backend**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+<img width="940" alt="image" src="https://github.com/Tina118/revenue-analysis-dashboard/assets/47208932/6f7b6060-db2b-4bbd-837c-67fcf90f30c6">
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
