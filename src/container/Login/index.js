@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
@@ -19,6 +19,12 @@ const Login = () => {
 
   // Get the setUserName function from the context
   const { setUserName } = useRevenueAnalysisContext()
+
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      localStorage.clear()
+    }
+  }, [])
 
   // Function to handle form submission
   const handleSubmit = async (e) => {
