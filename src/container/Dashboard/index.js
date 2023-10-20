@@ -135,7 +135,7 @@ const Dashboard = () => {
         </div>
       )}
       {revenue.length > 0 && !isLoading && (
-        <div className="px-20 py-10">
+        <div className=" px-2 py-5 md:px-20 md:py-10">
           <div className="relative">
             {/* Dropdown Component */}
             <Dropdown

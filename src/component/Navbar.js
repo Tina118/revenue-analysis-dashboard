@@ -1,7 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { func, string } from 'prop-types'
 
 const Navbar = ({ onClick, userName }) => {
+  const [toggleNav, setToggleNav] = useState(false);
+
+  const handleHamburger = () => setToggleNav((prev) => !prev);
+
   return (
     <nav className="bg-white border-gray-200 shadow-lg">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -12,6 +16,7 @@ const Navbar = ({ onClick, userName }) => {
         />
 
         <button
+          onClick={handleHamburger}
           data-collapse-toggle="navbar-dropdown"
           type="button"
           className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden "
@@ -35,7 +40,9 @@ const Navbar = ({ onClick, userName }) => {
             />
           </svg>
         </button>
-        <div className="hidden w-full md:block md:w-auto" id="navbar-dropdown">
+        <div
+          className={` ${!toggleNav && "hidden"} w-full md:block md:w-auto`}
+        >
           <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white ">
             <li>
               <a
