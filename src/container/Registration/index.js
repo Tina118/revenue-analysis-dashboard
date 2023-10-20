@@ -23,6 +23,10 @@ const Registration = () => {
     const formData = { userName, email, password }
     e.preventDefault() // Prevent the default form submission behavior
 
+    if (userName === '' || email === '') {
+      toast.error('Fields Cannot be empty')
+      return
+    }
     // Check if the password and confirm password match or if both are empty
     if (password !== cpassword || (password === '' && cpassword === '')) {
       toast.error('Password did not match')

@@ -1,8 +1,10 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import React, { Suspense, lazy } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Login from 'container/Login';
 
-import Login from 'container/Login'
-import Registration from 'container/Registration'
-import Dashboard from 'container/Dashboard'
+// Use React.lazy to dynamically import the Registration and Dashboard components
+const Registration = lazy(() => import('container/Registration'));
+const Dashboard = lazy(() => import('container/Dashboard'));
 
 /**
  * App
@@ -13,11 +15,25 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/register" element={<Registration />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route
+          path="/register"
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <Registration />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/dashboard"
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <Dashboard />
+            </Suspense>
+          }
+        />
       </Routes>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;

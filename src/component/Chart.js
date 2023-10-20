@@ -1,14 +1,54 @@
 import React from 'react'
-import {array} from 'prop-types';
-
+import { array } from 'prop-types'
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
 
 /**
  * Chart
- * Display Line Chart for revenue analysis 
+ * Display Line Chart for revenue analysis
  */
 const Chart = ({ revenue }) => {
+  // Define an array of month names
+  const monthNames = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ]
+
+  // Create an object to store data by product and month
+  const dataByProductAndMonth = {}
+
+  // Initialize data for each product
+  revenue.forEach((item) => {
+    if (!dataByProductAndMonth[item.product]) {
+      dataByProductAndMonth[item.product] = monthNames.map((month) => ({
+        name: month,
+        y: 0,
+      }))
+    }
+  })
+
+  // Populate the data
+  revenue.forEach((item) => {
+    const monthIndex = monthNames.indexOf(item.postingPeriod.split('-')[0])
+    dataByProductAndMonth[item.product][monthIndex].y = item.acv
+  })
+
+  // Convert data to series format
+  const series = Object.keys(dataByProductAndMonth).map((product) => ({
+    name: product,
+    data: dataByProductAndMonth[product],
+  }))
+
   // Highcharts Configuration
   const options = {
     chart: {
@@ -18,7 +58,7 @@ const Chart = ({ revenue }) => {
       text: 'ACV by Product Over Time',
     },
     xAxis: {
-      categories: ['January','Februray','March','April','May','June','July','August','September','October','November','December'],
+      categories: monthNames, // Use the defined month names
       title: {
         text: 'Posting Period',
       },
@@ -28,27 +68,7 @@ const Chart = ({ revenue }) => {
         text: 'ACV',
       },
     },
-    series: revenue
-      .reduce((products, item) => {
-        const productIndex = products.findIndex((p) => p.name === item.product)
-
-        if (productIndex === -1) {
-          // Product not found in the products array, add it
-          products.push({
-            name: item.product,
-            data: [item.acv],
-          })
-        } else {
-          // Product found, add ACV to its data
-          products[productIndex].data.push(item.acv)
-        }
-
-        return products
-      }, [])
-      .map((productData) => ({
-        name: productData.name,
-        data: productData.data,
-      })),
+    series: series,
   }
 
   return <HighchartsReact highcharts={Highcharts} options={options} />
@@ -56,7 +76,7 @@ const Chart = ({ revenue }) => {
 
 // PropTypes for the Chart component
 Chart.propTypes = {
-    revenue: array
-  };
+  revenue: array
+};
 
-export default Chart 
+export default Chart

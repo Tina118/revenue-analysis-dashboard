@@ -26,6 +26,12 @@ const Login = () => {
     const formData = { email, password }
     e.preventDefault() // Prevent the default form submission behavior
 
+    //Check if email or password field is not empty
+    if (email === '' || password === '') {
+      toast.error('Email and password fields cannot be empty.')
+      return
+    }
+
     try {
       // Send a POST request to the '/api/login' endpoint with the form data
       const response = await fetch('/api/login', {

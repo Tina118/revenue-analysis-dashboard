@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 import Navbar from 'component/Navbar'
 import RevenueTable from 'component/RevenueTable'
@@ -66,6 +67,7 @@ const Dashboard = () => {
   const [selectedOption, setSelectedOption] = useState('All Revenue Type')
   const [revenueType, setRevenueType] = useState([])
   const [filteredRevenue, setFilteredRevenue] = useState(revenue)
+  const [isLoading, setIsLoading] = useState(true)
 
   const fetchData = async () => {
     try {
@@ -75,8 +77,10 @@ const Dashboard = () => {
       setRevenue(data)
       // Call the function to get unique revenue types
       setRevenueType(['All Revenue Type', ...getUniqueRevenueTypes(data)])
+      setIsLoading(false)
     } catch (error) {
-      // Handle error
+      toast.error(error)
+      setIsLoading(false)
     }
   }
 
@@ -118,10 +122,19 @@ const Dashboard = () => {
   }, [selectedOption, revenue])
 
   return (
-    <div>
+    <div className="relative">
       <Navbar onClick={() => localStorage.clear()} userName={userName} />
-
-      {revenue.length > 0 && (
+      {isLoading && (
+        <div className="text-blue-600 font-bold text-4xl text-center absolute top-64 h-full w-full">
+          Loading Data.....
+        </div>
+      )}
+      {revenue.length === 0 && (
+        <div className="text-blue-600 font-bold text-4xl text-center absolute top-64 h-full w-full">
+          No data available to display, Please try after sometime.....
+        </div>
+      )}
+      {revenue.length > 0 && !isLoading && (
         <div className="px-20 py-10">
           <div className="relative">
             {/* Dropdown Component */}
@@ -140,7 +153,7 @@ const Dashboard = () => {
         </div>
       )}
     </div>
-  );
+  )
 }
 
 export default Dashboard
