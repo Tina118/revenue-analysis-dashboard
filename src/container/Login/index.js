@@ -20,6 +20,7 @@ const Login = () => {
   // Get the setUserName function from the context
   const { setUserName } = useRevenueAnalysisContext()
 
+  //Clear localstorage if token is already present for authentication
   useEffect(() => {
     if (localStorage.getItem('token')) {
       localStorage.clear()
