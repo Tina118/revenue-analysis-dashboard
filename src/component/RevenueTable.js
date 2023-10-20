@@ -67,7 +67,7 @@ const RevenueTable = ({ columns, data }) => {
 
   // Render the UI for your table
   return (
-    <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div className="relative overflow-x-auto sm:rounded-lg px-20 py-10">
       <table
         {...getTableProps()}
         className="w-full text-sm text-left text-gray-500"
@@ -99,7 +99,7 @@ const RevenueTable = ({ columns, data }) => {
               >
                 {row.cells.map((cell) => {
                   return (
-                    <td {...cell.getCellProps()} className="px-6 py-4">
+                    <td {...cell.getCellProps()} className="px-6 py-2">
                       {cell.render('Cell')}
                     </td>
                   )

@@ -8,11 +8,21 @@ import { useRevenueAnalysisContext } from 'context';
 import columns from './makeTableHeader';
 
 // A function to normalize the revenue data
-const normaliseData = (revenueInfo = []) =>
-  revenueInfo?.map((revenue) => ({
+const normaliseData = (revenueInfo = []) => {
+  // Step 1: Sort by 'acv' key in descending order
+  const sortedData = revenueInfo
+    .slice() // Create a copy to avoid modifying the original array
+    .sort((a, b) => b.acv - a.acv); // Sort by 'acv' in descending order
+
+  // Step 2: Update 'S_no' values
+  const normalizedData = sortedData.map((revenue, index) => ({
     ...revenue,
+    S_no: index + 1, // Update 'S_no' with the new order
     postingPeriod: `${revenue.month}-${revenue.year}`,
   }));
+
+  return normalizedData;
+};
 
 /**
  * Dashboard
