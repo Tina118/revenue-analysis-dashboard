@@ -129,7 +129,7 @@ const Dashboard = () => {
           Loading Data.....
         </div>
       )}
-      {revenue.length === 0 && (
+      {revenue.length === 0 && !isLoading && (
         <div className="text-blue-600 font-bold text-4xl text-center absolute top-64 h-full w-full">
           No data available to display, Please try after sometime.....
         </div>
