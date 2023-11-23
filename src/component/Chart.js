@@ -3,26 +3,27 @@ import { array } from 'prop-types'
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
 
+ // Define an array of month names
+ const monthNames = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+]
+
 /**
  * Chart
  * Display Line Chart for revenue analysis
  */
 const Chart = ({ revenue }) => {
-  // Define an array of month names
-  const monthNames = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ]
 
   // Create an object to store data by product and month
   const dataByProductAndMonth = {}
@@ -39,8 +40,8 @@ const Chart = ({ revenue }) => {
 
   // Populate the data
   revenue.forEach((item) => {
-    const monthIndex = monthNames.indexOf(item.postingPeriod.split('-')[0])
-    dataByProductAndMonth[item.product][monthIndex].y = item.acv
+    const monthIndex = monthNames.indexOf(item.month)
+    dataByProductAndMonth[item.product][monthIndex].y += item.acv
   })
 
   // Convert data to series format

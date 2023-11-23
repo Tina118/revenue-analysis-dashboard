@@ -1,4 +1,4 @@
-import React, { useState,memo } from 'react'
+import React, { useState, memo } from 'react'
 import { arrayOf, string } from 'prop-types'
 
 import { useRevenueAnalysisContext } from 'context'
@@ -61,24 +61,25 @@ const Dropdown = ({ revenueType }) => {
             aria-labelledby="dropdownRadioButton"
           >
             {revenueType.map((type) => (
-              <li key={type}>
-                <div className="flex items-center p-2 rounded hover-bg-gray-100">
-                  <input
-                    id="filter-radio-example-5"
-                    type="radio"
-                    name="filter-radio"
-                    onChange={() => {
-                      setSelectedOption(type)
-                      setDropdownOpen(false) // Close the dropdown on option selection
-                    }}
-                  />
-                  <label
-                    htmlFor="filter-radio-example-5"
-                    className="w-full ml-2 text-sm font-medium text-gray-900 rounded"
-                  >
-                    {type}
-                  </label>
-                </div>
+              <li
+                key={type}
+                className="flex items-center p-2 rounded hover-bg-gray-100 cursor-pointer"
+                onClick={() => {
+                  setSelectedOption(type)
+                  setDropdownOpen(false) // Close the dropdown on option selection
+                }}
+              >
+                <input
+                  id={`filter-radio-${type}`}
+                  type="radio"
+                  name="filter-radio"
+                />
+                <label
+                  htmlFor={`filter-radio-${type}`}
+                  className="w-full ml-2 text-sm font-medium text-gray-900 rounded cursor-pointer"
+                >
+                  {type}
+                </label>
               </li>
             ))}
           </ul>

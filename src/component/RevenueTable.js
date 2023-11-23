@@ -65,7 +65,8 @@ const RevenueTable = ({ columns, data }) => {
         </span>
       </li>
     ))
-  }, [pageIndex, pageCount, gotoPage])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pageIndex, pageCount])
 
   // Render the UI for your table
   return (

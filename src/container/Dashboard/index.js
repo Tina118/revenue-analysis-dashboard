@@ -21,7 +21,7 @@ const normaliseData = (revenueInfo = []) => {
   const normalizedData = sortedData.map((revenue, index) => ({
     ...revenue,
     S_no: index + 1, // Update 'S_no' with the new order
-    postingPeriod: `${revenue.month}-${revenue.year}`,
+    postingPeriod: `${revenue.month}-${revenue.year.toString().slice(2)}`,
   }))
 
   return normalizedData
@@ -33,8 +33,8 @@ const getUniqueRevenueTypes = (revenue) => {
   const uniqueRevenueTypes = new Set()
 
   // Iterate through the revenue data to collect unique revenue types
-  revenue.forEach((item) => {
-    uniqueRevenueTypes.add(item.revenue_type)
+  revenue.forEach(({ revenue_type }) => {
+    uniqueRevenueTypes.add(revenue_type)
   })
 
   // Convert the Set back to an array
@@ -101,19 +101,17 @@ const Dashboard = () => {
     if (selectedOption !== 'All Revenue Type') {
       // If a specific revenue type is selected (not 'All Revenue Type'),
       // filter the revenue data to include only the selected type
-      const filteredData = revenue.filter(
-        ({ revenue_type }) => revenue_type === selectedOption,
-      )
-
       // Map the filtered data to update the 'S_no' property based on the filtered order
       // Note: We reset 'S_no' to start from 1 for the filtered data
-      const filteredDataWithSNo = filteredData.map((revenue, index) => ({
-        ...revenue,
-        S_no: index + 1,
-      }))
+      const filteredData = revenue
+        .filter(({ revenue_type }) => revenue_type === selectedOption)
+        .map((revenue, index) => ({
+          ...revenue,
+          S_no: index + 1,
+        }))
 
       // Update the 'filteredRevenue' state with the filtered and renumbered data
-      setFilteredRevenue(filteredDataWithSNo)
+      setFilteredRevenue(filteredData)
     } else {
       // If 'All Revenue Type' is selected, set 'filteredRevenue' to the original 'revenue' data
       setFilteredRevenue(revenue)
@@ -137,9 +135,7 @@ const Dashboard = () => {
         <div className=" px-2 py-5 md:px-20 md:py-10">
           <div className="relative">
             {/* Dropdown Component */}
-            <Dropdown
-              revenueType={revenueType}
-            />
+            <Dropdown revenueType={revenueType} />
 
             {/* Chart Component */}
             <Chart revenue={filteredRevenue} />
